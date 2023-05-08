@@ -13,9 +13,10 @@ import lombok.NoArgsConstructor;
 public class Function {
     @Builder.Default
     private Fraction coefficient = Fraction.of();
-    private String ingonita;
     @Builder.Default
-    private Fraction expoent = Fraction.of(2);
+    private String ingonita = "";
+    @Builder.Default
+    private Fraction expoent = Fraction.of();
     
     public Function of(Fraction coefficient, String ingonita, Fraction expooent){
         return  Function.builder().coefficient(coefficient).ingonita(ingonita).expoent(expoent).build();
@@ -31,6 +32,20 @@ public class Function {
 
     public Function of(String ingonita){
         return  of(Fraction.of(1), ingonita, Fraction.of(1));
-    }    
+    }
+    
+    public Function root() {
+        return new Function(Fraction.of(), ingonita, expoent);
+    }
+    
+    public boolean equalsFunction(Function function){
+        if(!expoent.equals(function.getExpoent())) return false;
+        if(!ingonita.equals(function.getIngonita())) return false;
+        return coefficient.equals(function.getCoefficient());
+    }
+    
+    public String simplyText(){
+        return String.format("%s^%s", ingonita, expoent.text());
+    }
     
 }
