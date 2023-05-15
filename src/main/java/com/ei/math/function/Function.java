@@ -33,4 +33,19 @@ public class Function {
         return  of(Fraction.of(1), ingonita, Fraction.of(1));
     }    
     
+   public String simplyText(){
+        return String.format("%s%s^%s",coefficient.text(), ingonita ,expoent.text());
+    }
+   
+    public Function root() {
+        return new Function(Fraction.of(),ingonita, expoent);
+    }
+       
+   public boolean equalsFunction(Function function){
+       return ingonita.equals(function.getIngonita()) && expoent.equals(function.getExpoent());
+   }
+       
+      
+    
+    
 }
